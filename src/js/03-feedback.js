@@ -37,8 +37,13 @@ function populateForm() {
 
 function onFormSubmit(evt) {
   evt.preventDefault();
-  const submit = JSON.parse(localStorage.getItem(STORAGE_KEY));
-  console.log('Send form', submit);
+  const email = evt.currentTarget.email.value;
+  const message = evt.currentTarget.message.value;
+
+  if (email === '' || message === '') {
+    return alert('You have not filled in all fields!!!');
+  }
   evt.currentTarget.reset();
   localStorage.removeItem(STORAGE_KEY);
+  console.log('Send form', { email, message });
 }
